@@ -1,0 +1,24 @@
+-- Create the User Table
+CREATE TABLE `User` (
+  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `Name` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB;
+
+-- Create the Journal Table
+CREATE TABLE `Journal` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `email` VARCHAR(100) NOT NULL,
+  `Timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `Day` INT(2),
+  `Month` INT(2),
+  `Year` INT(4),
+  `debit_account_title` VARCHAR(100) NOT NULL,
+  `credit_account_title` VARCHAR(100) NOT NULL,
+  `transaction_amount` DECIMAL(15, 2) NOT NULL,
+  `comment` TEXT,
+  `pdf` VARCHAR(255),
+  FOREIGN KEY (`email`) REFERENCES `User`(`email`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
